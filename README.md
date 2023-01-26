@@ -5,3 +5,5 @@
 �
 
 i like beans
+
+and rice
