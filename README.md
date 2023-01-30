@@ -15,4 +15,4 @@ images:
   ![image](https://user-images.githubusercontent.com/103613824/215238908-a57b9b2c-6f37-4cc3-895b-21a39ae6f273.png)
   
 http://3.17.104.113/
-ssh -i ~/keys/production.pem ubuntu@18.217.70.55 
+ssh -i ~/keys/production.pem ubuntu@3.17.104.113
