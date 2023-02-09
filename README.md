@@ -16,3 +16,11 @@ images:
   
 http://3.17.104.113/
 ssh -i ~/keys/production.pem ubuntu@3.17.104.113
+
+$ ./deployFiles.sh -k ~/keys/production.pem -h jasonstorey.click -s simon
+-s creates an outter link ex. simon/jasonstorey.click
+learned about correct file structure
+
+code. to open up cloned repository
+
+pwd shows you where you are at currently
