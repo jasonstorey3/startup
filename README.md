@@ -24,3 +24,5 @@ learned about correct file structure
 code. to open up cloned repository
 
 pwd shows you where you are at currently
+
+got to bootstrap website to see how you can implement different styles
