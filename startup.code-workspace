@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../../Downloads/startbootstrap-simple-sidebar-gh-pages/startbootstrap-simple-sidebar-gh-pages/css"
+		},
+		{
+			"path": "../../Downloads/startbootstrap-simple-sidebar-gh-pages/startbootstrap-simple-sidebar-gh-pages/assets"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "startup"
+	}
+}
