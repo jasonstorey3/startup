@@ -13,3 +13,7 @@ code. to open up cloned repository
 pwd shows you where you are at currently
 
 got to bootstrap website to see how you can implement different styles
+
+make sure css file is in same folder
+
+can go to differnt inserts and find an embed html code
