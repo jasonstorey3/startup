@@ -17,3 +17,9 @@ got to bootstrap website to see how you can implement different styles
 make sure css file is in same folder
 
 can go to differnt inserts and find an embed html code
+
+make sure you make a copy of files when putting them into vs code instead of moving the folder in
+
+use 'this' to make a direct reference to varible in realm of function
+
+use ${ to enter variable into a string
