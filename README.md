@@ -23,3 +23,9 @@ make sure you make a copy of files when putting them into vs code instead of mov
 use 'this' to make a direct reference to varible in realm of function
 
 use ${ to enter variable into a string
+
+look at the netwrok tab to see errors on why something may not be functioning properly
+
+add event listener waits for user to do something
+
+use .setattribute to manipulate specific part of html tag
