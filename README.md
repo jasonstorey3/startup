@@ -29,3 +29,9 @@ look at the netwrok tab to see errors on why something may not be functioning pr
 add event listener waits for user to do something
 
 use .setattribute to manipulate specific part of html tag
+
+use methods such as app.get(), app.post(), app.put(), app.delete() to define the different HTTP methods
+
+use built-in middleware, such as express.json() and express.urlencoded() for handling JSON and URL-encoded requests
+
+use the app.use() method to define an error-handling middleware function
