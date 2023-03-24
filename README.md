@@ -35,3 +35,7 @@ use methods such as app.get(), app.post(), app.put(), app.delete() to define the
 use built-in middleware, such as express.json() and express.urlencoded() for handling JSON and URL-encoded requests
 
 use the app.use() method to define an error-handling middleware function
+
+dont have a # in your password for your data base haha
+
+go to environment variables to setup credentials for startup
