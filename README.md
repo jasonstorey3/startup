@@ -39,3 +39,9 @@ use the app.use() method to define an error-handling middleware function
 dont have a # in your password for your data base haha
 
 go to environment variables to setup credentials for startup
+
+use bcrypt to encypt password when storing them in a database
+
+use cookie parser middleware to manage user authentication tokens stored in cookies
+
+
