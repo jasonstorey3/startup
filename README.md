@@ -44,4 +44,18 @@ use bcrypt to encypt password when storing them in a database
 
 use cookie parser middleware to manage user authentication tokens stored in cookies
 
+Create a new WebSocket server object wss and attach it to the HTTP server.
 
+Define an array connections to keep track of all the connections made to the WebSocket server.
+
+When a new connection is established, add it to the connections array and set up event listeners for the WebSocket object ws:
+
+a. Listen for incoming messages and forward them to all other connections except for the sender.
+
+b. Listen for the close event and remove the closed connection from the connections array.
+
+c. Listen for pong messages and mark the connection as alive.
+
+Use setInterval to ping all connections every 10 seconds and kill any connection that doesn't respond to the ping.
+
+Export the PeerProxy class for use in other modules.
