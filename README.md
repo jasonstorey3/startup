@@ -60,18 +60,10 @@ Use setInterval to ping all connections every 10 seconds and kill any connection
 
 Export the PeerProxy class for use in other modules.
 
-I learned to commit my changes at each step of the conversion process to React. This helps me revert to a previous state if necessary, instead of starting over from scratch.
-
-I learned to run npm install in each directory when moving the service code and UI code into separate directories. This ensures I have the required NPM packages in each folder.
-
-I discovered that when using React Bootstrap, I must import the necessary CSS and components for the specific Bootstrap widgets I want to use in my application.
-
-I found that starting with simple stubs and gradually building up functionality is a helpful approach when creating view components. It makes converting the original HTML and JavaScript code into React components more manageable.
-
-I learned to handle unknown paths by adding a default matcher (e.g., *) and a corresponding NotFound component when setting up routing.
-
-I realized that when converting existing JavaScript code into React components, I need to create React state variables for stateful objects and replace DOM query selectors with React state variables.
-
-I learned to set up the development environment for debugging by configuring the React debugger HTTP server to listen on a different port (e.g., 3001) from the Node.js server (e.g., 3000). I also learned to update the .env.local file and package.json accordingly to ensure proper communication between the two servers.
-
-I discovered the importance of testing my application frequently as I make changes, which helps me catch errors and verify that everything is working as expected.
+- commit my changes at each step of the conversion process to React. This helps me revert to a previous state if necessary, instead of starting over from scratch.
+- run npm install in each directory when moving the service code and UI code into separate directories. This ensures I have the required NPM packages in each folder.
+- when using React Bootstrap, I must import the necessary CSS and components for the specific Bootstrap widgets I want to use in my application.
+- starting with simple stubs and gradually building up functionality is a helpful approach when creating view components. It makes converting the original HTML and JavaScript code into React components more manageable.
+- to handle unknown paths by adding a default matcher (e.g., *) and a corresponding NotFound component when setting up routing.
+- when converting existing JavaScript code into React components, I need to create React state variables for stateful objects and replace DOM query selectors with React state variables.
+- set up the development environment for debugging by configuring the React debugger HTTP server to listen on a different port (e.g., 3001) from the Node.js server (e.g., 3000). I also learned to update the .env.local file and package.json accordingly to ensure proper communication between the two servers.
