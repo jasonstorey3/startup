@@ -2,5 +2,15 @@
   "dependencies": {
     "express": "^4.18.2",
     "mongodb": "^5.1.0"
-  }
+  },
+  "name": "startup",
+  "description": "pitch paragraph: Have you ever been on campus and wanted to meet up for lunch or a study session but didnt know who was available? With my new web application you will be able to see what classmates are avaialble and on campus so that you can meet up. All you have to do is put in the times that you aren't available and turn on your location sharing. If you want to meet up for lunch or a study session, just hop on the app to see what friends are available in your proximity.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
