@@ -49,8 +49,8 @@ async function loginOrCreate(endpoint) {
   }
 }
 
-function play() {
-  window.location.href = 'play.html';
+function home() {
+  window.location.href = 'home.html';
 }
 
 function logout() {
