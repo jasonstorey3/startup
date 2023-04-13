@@ -57,7 +57,9 @@ function initMap() {
                 map.setView(userLocation);
 
                 // Create a marker for the user's location
-                userMarker = L.marker(userLocation).addTo(map);
+                userMarker = L.marker(userLocation, {
+                    icon: createUserIcon()
+                }).addTo(map);
                 userMarker.bindPopup("Your location").openPopup();
             },
             () => handleLocationError(true)
@@ -79,8 +81,8 @@ initMap();
 
 function createUserIcon() {
     return L.icon({
-        iconUrl: 'https://example.com/path/to/your/person-logo.png',
-        iconSize: [25, 41], // Size of the icon, adjust based on your image
+        iconUrl: '//upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Simpleicons_Places_map-marker-with-a-person-shape.svg/485px-Simpleicons_Places_map-marker-with-a-person-shape.svg.png',
+        iconSize: [30, 50], // Size of the icon, adjust based on your image
         iconAnchor: [12, 41], // Point of the icon to be positioned at the marker's location
         popupAnchor: [0, -41] // Point of the popup relative to the icon's anchor
     });
