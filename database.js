@@ -1,4 +1,6 @@
-const { MongoClient } = require('mongodb');
+const {
+  MongoClient
+} = require('mongodb');
 const bcrypt = require('bcrypt');
 const uuid = require('uuid');
 
@@ -17,11 +19,15 @@ const userCollection = client.db('simon').collection('user');
 const scoreCollection = client.db('simon').collection('score');
 
 function getUser(email) {
-  return userCollection.findOne({ email: email });
+  return userCollection.findOne({
+    email: email
+  });
 }
 
 function getUserByToken(token) {
-  return userCollection.findOne({ token: token });
+  return userCollection.findOne({
+    token: token
+  });
 }
 
 async function createUser(email, password) {
@@ -45,7 +51,9 @@ function addScore(score) {
 function getHighScores() {
   const query = {};
   const options = {
-    sort: { score: -1 },
+    sort: {
+      score: -1
+    },
     limit: 10,
   };
   const cursor = scoreCollection.find(query, options);

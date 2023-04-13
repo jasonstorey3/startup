@@ -18,7 +18,6 @@
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
         integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
         crossorigin=""></script>
-
 </head>
 
 <body>
@@ -81,14 +80,8 @@
             <!-- Page content-->
             <div class="container-fluid">
                 <h1 class="mt-4">Campus Meetup</h1>
-                <p>
-                    <!-- <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3045.216555533796!2d-111.64973787721541!3d40.248718345269424!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1677306016246!5m2!1sen!2sus"
-                        width="1000" height="600" style="border:0;" allowfullscreen="" loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade"></iframe> -->
-                    <iframe width="1000" height="600" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
-                        src="https://www.openstreetmap.org/export/embed.html?bbox=-111.66473865509035%2C40.243322061006445%2C-111.64263725280763%2C40.252264299422365&amp;layer=transportmap"
-                        style="border: 1px solid black"></iframe>
+                <p>Find your friends and meet up with them!</p>
+                <div id="map" style="width: 1000px; height: 600px;"></div>
                 </p>
             </div>
         </div>
@@ -97,9 +90,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
     <script src="home.js"></script>
-    <!-- Google Map API-->
-    <script async src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
-
+    <!-- Remove the Google Map API script as you're not using it -->
 </body>
 
 </html>
