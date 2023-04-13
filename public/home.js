@@ -76,3 +76,12 @@ function handleLocationError(browserHasGeolocation) {
 
 // Initialize the map
 initMap();
+
+function createUserIcon() {
+    return L.icon({
+        iconUrl: 'https://example.com/path/to/your/person-logo.png',
+        iconSize: [25, 41], // Size of the icon, adjust based on your image
+        iconAnchor: [12, 41], // Point of the icon to be positioned at the marker's location
+        popupAnchor: [0, -41] // Point of the popup relative to the icon's anchor
+    });
+}
