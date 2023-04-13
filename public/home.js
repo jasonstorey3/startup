@@ -29,3 +29,50 @@ window.addEventListener('DOMContentLoaded', event => {
         });
     }
 })
+
+let map;
+let userMarker;
+
+function initMap() {
+    const defaultLatLng = [40.2518, 111.6493]; // Default coordinates (change if needed)
+
+    // Create a new map centered at the default coordinates
+    map = L.map("map").setView(defaultLatLng, 13);
+
+    // Add OpenStreetMap tiles layer
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        maxZoom: 19,
+    }).addTo(map);
+
+    // Try to get the user's location
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const userLocation = [
+                    position.coords.latitude,
+                    position.coords.longitude,
+                ];
+                // Center the map at the user's location
+                map.setView(userLocation);
+
+                // Create a marker for the user's location
+                userMarker = L.marker(userLocation).addTo(map);
+                userMarker.bindPopup("Your location").openPopup();
+            },
+            () => handleLocationError(true)
+        );
+    } else {
+        // Browser doesn't support Geolocation
+        handleLocationError(false);
+    }
+}
+
+function handleLocationError(browserHasGeolocation) {
+    alert(browserHasGeolocation ?
+        "Error: The Geolocation service failed." :
+        "Error: Your browser doesn't support geolocation.");
+}
+
+// Initialize the map
+initMap();
