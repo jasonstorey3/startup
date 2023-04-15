@@ -43,7 +43,9 @@ function initMap() {
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
         maxZoom: 19,
-    }).addTo(map);
+    }).addTo(map)
+
+    let status = "Studying";
 
     // Try to get the user's location
     if (navigator.geolocation) {
@@ -60,7 +62,7 @@ function initMap() {
                 userMarker = L.marker(userLocation, {
                     icon: createUserIcon()
                 }).addTo(map);
-                userMarker.bindPopup("Your location").openPopup();
+                userMarker.bindPopup(`${status}`).openPopup();
             },
             () => handleLocationError(true)
         );
@@ -86,4 +88,24 @@ function createUserIcon() {
         iconAnchor: [12, 41], // Point of the icon to be positioned at the marker's location
         popupAnchor: [0, -41] // Point of the popup relative to the icon's anchor
     });
+}
+
+const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+const socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
+socket.onopen = (event) => {
+};
+socket.onclose = (event) => {
+};
+socket.onmessage = (event) => {
+    const message = JSON.parse(event.data);
+        const status = message.status;
+        userMarker.setPopupContent(`${status}`).openPopup();
+    }
+
+function changeStatus(status) {
+    const event = {
+        from: localStorage.getItem('userName'),
+        status: status
+    };
+    ws.send(JSON.stringify(event));
 }

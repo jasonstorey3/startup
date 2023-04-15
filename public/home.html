@@ -33,11 +33,11 @@
                         Status
                     </button>
                     <div class="dropdown-menu" aria-labelledby="statusDropdown">
-                        <a class="dropdown-item" id="Studying">Studying</a>
-                        <a class="dropdown-item" id="In Class">In Class</a>
-                        <a class="dropdown-item" id="Food?">Food?</a>
-                        <a class="dropdown-item" id="Let's Dip">Let's Dip</a>
-                        <a class="dropdown-item" id="#">Custom</a>
+                        <a class="dropdown-item" id="Studying" onclick="changeStatus(Studying);">Studying</a>
+                        <a class="dropdown-item" id="InClass" onclick="changeStatus(InClass);">In Class</a>
+                        <a class="dropdown-item" id="Food" onclick="changeStatus(Food);">Food?</a>
+                        <a class="dropdown-item" id="LetsDip" onclick="changeStatus(LetsDip);">Let's Dip</a>
+                        <a class="dropdown-item" id="Custom" onclick="changeStatus(Custom);">Custom</a>
                     </div>
                     <!--<a class="list-group-item list-group-item-action list-group-item-light p-3" href="status.html">Status</a>-->
                     <a class="list-group-item list-group-item-action list-group-item-light p-3"
@@ -82,9 +82,6 @@
                 <h1 class="mt-4">Campus Meetup</h1>
                 <p>Find your friends and meet up with them!</p>
                 <div id="map" style="width: 1000px; height: 600px;"></div>
-                <button id="share-location-btn" class="btn btn-primary">Share Location</button>
-
-                </p>
             </div>
         </div>
     </div>
