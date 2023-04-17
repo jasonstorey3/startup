@@ -15,8 +15,8 @@ if (!userName) {
 const url = `mongodb+srv://${userName}:${password}@${hostname}`;
 
 const client = new MongoClient(url);
-const userCollection = client.db('simon').collection('user');
-const scoreCollection = client.db('simon').collection('score');
+const userCollection = client.db('startup').collection('user');
+const locationsCollection = client.db('startup').collection('location');
 
 function getUser(email) {
   return userCollection.findOne({
@@ -44,19 +44,13 @@ async function createUser(email, password) {
   return user;
 }
 
-function addScore(score) {
-  scoreCollection.insertOne(score);
+function addLocation(location) {
+  locationsCollection.insertOne(location);
 }
 
-function getHighScores() {
+function getLocations() {
   const query = {};
-  const options = {
-    sort: {
-      score: -1
-    },
-    limit: 10,
-  };
-  const cursor = scoreCollection.find(query, options);
+  const cursor = locationsCollection.find(query);
   return cursor.toArray();
 }
 
@@ -64,6 +58,6 @@ module.exports = {
   getUser,
   getUserByToken,
   createUser,
-  addScore,
-  getHighScores,
+  addLocation,
+  getLocations,
 };

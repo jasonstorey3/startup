@@ -10,7 +10,7 @@
 window.addEventListener('DOMContentLoaded', event => {
     // Toggle the side navigation
     const sidebarToggle = document.body.querySelector('#sidebarToggle');
-    const mapIframe = document.body.querySelector('iframe');
+    const map = document.body.querySelector('map');
     if (sidebarToggle) {
         if (localStorage.getItem('sb|sidebar-toggle') === 'true') {
             document.body.classList.toggle('sb-sidenav-toggled');
@@ -20,11 +20,11 @@ window.addEventListener('DOMContentLoaded', event => {
             document.body.classList.toggle('sb-sidenav-toggled');
             localStorage.setItem('sb|sidebar-toggle', document.body.classList.contains('sb-sidenav-toggled'));
             if (localStorage.getItem('sb|sidebar-toggle') === 'true') {
-                mapIframe.setAttribute("width", "1235x")
-                console.log(mapIframe.getAttribute("width"))
+                map.setAttribute("width", "1235x")
+                console.log(map.getAttribute("width"))
             } else {
-                mapIframe.setAttribute("width", "1000px")
-                console.log(mapIframe.getAttribute("width"))
+                map.setAttribute("width", "1000px")
+                console.log(map.getAttribute("width"))
             }
         });
     }
@@ -33,7 +33,7 @@ window.addEventListener('DOMContentLoaded', event => {
 let map;
 let userMarker;
 
-function initMap() {
+async function initMap() {
     const defaultLatLng = [40.2518, 111.6493]; // Default coordinates (change if needed)
 
     // Create a new map centered at the default coordinates
@@ -45,16 +45,18 @@ function initMap() {
         maxZoom: 19,
     }).addTo(map)
 
-    let status = "Studying";
+    let status
+    let userLocation
 
     // Try to get the user's location
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
             (position) => {
-                const userLocation = [
+                userLocation = [
                     position.coords.latitude,
                     position.coords.longitude,
                 ];
+
                 // Center the map at the user's location
                 map.setView(userLocation);
 
@@ -66,46 +68,103 @@ function initMap() {
             },
             () => handleLocationError(true)
         );
+        const response = await fetch('/api/location', {
+            method: 'post',
+            body: JSON.stringify({
+                from: localStorage.getItem('userName'),
+                location: userLocation
+            }),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            },
+        });
     } else {
         // Browser doesn't support Geolocation
         handleLocationError(false);
     }
 }
+async function loadLocations() {
+    let locations = [];
+    try {
+        // Get the locations from the service
+        const response = await fetch('/api/locations');
+        locations = await response.json();
 
-function handleLocationError(browserHasGeolocation) {
-    alert(browserHasGeolocation ?
-        "Error: The Geolocation service failed." :
-        "Error: Your browser doesn't support geolocation.");
+        // Save the locations in case we go offline in the future
+        localStorage.setItem('locations', JSON.stringify(loactions));
+    } catch {
+        // If there was an error then just use the last saved locations
+        const locationsText = localStorage.getItem('locations');
+        if (locationsText) {
+            locations = JSON.parse(locationsText);
+        }
+    }
+
+    displayLocations(locations);
 }
 
-// Initialize the map
-initMap();
+async function displayLocations(locations) {
 
-function createUserIcon() {
-    return L.icon({
-        iconUrl: '//upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Simpleicons_Places_map-marker-with-a-person-shape.svg/485px-Simpleicons_Places_map-marker-with-a-person-shape.svg.png',
-        iconSize: [30, 50], // Size of the icon, adjust based on your image
-        iconAnchor: [12, 41], // Point of the icon to be positioned at the marker's location
-        popupAnchor: [0, -41] // Point of the popup relative to the icon's anchor
-    });
+    if (locations.length) {
+        // Update the map with the locations
+        for (const [i, location] of locations.entries()) {
+            // Get the status of each user
+            const response = await fetch('/api/status');
+            locations = await response.json();
+            // Create a marker for the user's location
+            userMarker = L.marker(location.location, {
+                icon: createUserIcon()
+            }).addTo(map);
+            userMarker.bindPopup(`${status}`).openPopup();
+        }
+    }
 }
 
-const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
-const socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
-socket.onopen = (event) => {
-};
-socket.onclose = (event) => {
-};
-socket.onmessage = (event) => {
-    const message = JSON.parse(event.data);
+    loadLocations();
+
+    function handleLocationError(browserHasGeolocation) {
+        alert(browserHasGeolocation ?
+            "Error: The Geolocation service failed." :
+            "Error: Your browser doesn't support geolocation.");
+    }
+
+    // Initialize the map
+    initMap();
+
+    function createUserIcon() {
+        return L.icon({
+            iconUrl: '//upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Simpleicons_Places_map-marker-with-a-person-shape.svg/485px-Simpleicons_Places_map-marker-with-a-person-shape.svg.png',
+            iconSize: [30, 50], // Size of the icon, adjust based on your image
+            iconAnchor: [12, 41], // Point of the icon to be positioned at the marker's location
+            popupAnchor: [0, -41] // Point of the popup relative to the icon's anchor
+        });
+    }
+
+    const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+    const socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
+    socket.onopen = (event) => {};
+    socket.onclose = (event) => {};
+    socket.onmessage = (event) => {
+        const message = JSON.parse(event.data);
         const status = message.status;
         userMarker.setPopupContent(`${status}`).openPopup();
     }
 
-function changeStatus(status) {
-    const event = {
-        from: localStorage.getItem('userName'),
-        status: status
-    };
-    ws.send(JSON.stringify(event));
-}
+    async function changeStatus(status) {
+        const event = {
+            from: localStorage.getItem('userName'),
+            status: status
+        };
+        ws.send(JSON.stringify(event));
+        const response = await fetch('/api/status', {
+            method: 'post',
+            body: JSON.stringify({
+                from: localStorage.getItem('userName'),
+                status: status
+            }),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            },
+        });
+    }
+    

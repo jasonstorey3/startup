@@ -84,17 +84,17 @@ secureApiRouter.use(async (req, res, next) => {
   }
 });
 
-// GetScores
-secureApiRouter.get('/scores', async (req, res) => {
-  const scores = await DB.getHighScores();
-  res.send(scores);
+// GetLocations
+secureApiRouter.get('/locations', async (req, res) => {
+  const locations = await DB.getLocations();
+  res.send(locations);
 });
 
-// SubmitScore
-secureApiRouter.post('/score', async (req, res) => {
-  await DB.addScore(req.body);
-  const scores = await DB.getHighScores();
-  res.send(scores);
+// AddLocation
+secureApiRouter.post('/location', async (req, res) => {
+  await DB.addLocation(req.body);
+  const locations = await DB.getLocations();
+  res.send(locations);
 });
 
 // Default error handler
@@ -120,4 +120,4 @@ const httpService = app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
 
-//new PeerProxy(httpService);
+new PeerProxy(httpService);
