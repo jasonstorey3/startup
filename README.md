@@ -67,3 +67,5 @@ Export the PeerProxy class for use in other modules.
 - to handle unknown paths by adding a default matcher (e.g., *) and a corresponding NotFound component when setting up routing.
 - when converting existing JavaScript code into React components, I need to create React state variables for stateful objects and replace DOM query selectors with React state variables.
 - set up the development environment for debugging by configuring the React debugger HTTP server to listen on a different port (e.g., 3001) from the Node.js server (e.g., 3000). I also learned to update the .env.local file and package.json accordingly to ensure proper communication between the two servers.
+
+make sure to set envirnment variables in ubuntu to store data in mongodb
