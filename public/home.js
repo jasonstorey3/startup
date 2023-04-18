@@ -38,7 +38,7 @@ async function initMap() {
     const defaultLatLng = [40.2518, 111.6493]; // Default coordinates (change if needed)
 
     // Create a new map centered at the default coordinates
-    map = L.map("map").setView(defaultLatLng, 13);
+    map = L.map("map").setView(defaultLatLng, 17);
 
     // Add OpenStreetMap tiles layer
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
